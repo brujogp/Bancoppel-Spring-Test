@@ -2,7 +2,6 @@ package com.example.demo.controllers;
 
 import com.example.demo.dto.ProductEntity;
 import com.example.demo.services.IMainService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +16,7 @@ public class MainController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getProduct(@PathVariable("id") Long productId) {
-        var product = service.getProductById(productId);
-
-        if (product.isPresent()) {
-            return ResponseEntity.ok(product);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(service.getProductById(productId));
     }
 
     @PostMapping

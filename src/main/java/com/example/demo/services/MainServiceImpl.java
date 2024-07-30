@@ -1,13 +1,10 @@
 package com.example.demo.services;
 
-
 import com.example.demo.dto.ProductEntity;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.reposities.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 public class MainServiceImpl implements IMainService {
@@ -18,8 +15,8 @@ public class MainServiceImpl implements IMainService {
     }
 
     @Override
-    public Optional<ProductEntity> getProductById(Long id) throws NotFoundException {
-        return repository.findById(id);
+    public ProductEntity getProductById(Long id) throws NotFoundException {
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("No se encontró el producto con el ID ".concat(id.toString())));
     }
 
     @Override
