@@ -24,4 +24,9 @@ public class MainController {
         service.saveProductById(product);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @GetMapping
+    public ResponseEntity<?> getAllProduct() {
+        return ResponseEntity.ok(service.getAllProducts());
+    }
 }
